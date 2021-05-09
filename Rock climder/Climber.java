@@ -17,7 +17,7 @@ public class Climber {
     }
 
     public void setDifference3_step(int difference3_step) {
-        // Если максимальный перепад трех ближайших вершин больше максимальной, то ограничить максимальной вершиной//
+        // Если максимальный перепад трех ближайших вершин больше максимальной, то ограничить максимальной вершиной
         if (difference3_step < max_height) {
             this.difference3_step = difference3_step;
         }
@@ -45,7 +45,7 @@ public class Climber {
         int max;
         int min;
 
-        //Разница между двумя соседними вершинами//
+        //Разница между двумя соседними вершинами
         int difference = 0;
 
         // Генерация первых двух вершин//
@@ -68,7 +68,7 @@ public class Climber {
         difference = Math.abs(max-min);
 
         for (int i = 2; i < length; i++) {
-            // Границы высоты следующей вершины//
+            // Границы высоты следующей вершины
             // (difference3_step - difference) - дисперсия относительно макс и мин
             int a = negative(min, difference3_step - difference);
             int b = positive(max, difference3_step - difference);
@@ -76,7 +76,7 @@ public class Climber {
 
             route[i] = Math.round((float)Math.random() * (b - a) + a);
 
-            //Ищем мин. и максимум двух соседних вершин//
+            //Ищем мин. и максимум двух соседних вершин
             if (route[i-1] > route[i]) {
                 max = route[i-1];
                 min = route[i];
@@ -95,7 +95,7 @@ public class Climber {
 
     }
 
-    //Если границы смещаются за пределы максимальной вершиной, то ограничить  этой максимальной вершиной//
+    //Если границы смещаются за пределы максимальной вершиной, то ограничить  этой максимальной вершиной
     private int positive (int max_f, int diff) {
         if (max_f+diff > max_height) {
              return max_height;
@@ -104,7 +104,7 @@ public class Climber {
             return max_f+diff;
     }
 
-    //Если границы смещаются в отрицательный диапазон, то ограничить нулем//
+    //Если границы смещаются в отрицательный диапазон, то ограничить нулем
     private int negative (int min_f, int diff) {
         if (min_f-diff < 0) {
             return 0;
